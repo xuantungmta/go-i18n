@@ -5,7 +5,7 @@ import (
 
 	"text/template"
 
-	"github.com/nicksnyder/go-i18n/v2/internal/plural"
+	"go-i18n/internal/plural"
 	"golang.org/x/text/language"
 )
 
@@ -30,7 +30,7 @@ func NewLocalizer(bundle *Bundle, langs ...string) *Localizer {
 }
 
 func parseTags(langs []string) []language.Tag {
-	tags := []language.Tag{}
+	var tags []language.Tag
 	for _, lang := range langs {
 		t, _, err := language.ParseAcceptLanguage(lang)
 		if err != nil {

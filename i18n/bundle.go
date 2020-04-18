@@ -2,11 +2,9 @@ package i18n
 
 import (
 	"fmt"
-	"io/ioutil"
-
-	"github.com/nicksnyder/go-i18n/v2/internal/plural"
-
+	"go-i18n/internal/plural"
 	"golang.org/x/text/language"
+	"io/ioutil"
 )
 
 // UnmarshalFunc unmarshals data into v.

@@ -6,7 +6,7 @@ package plural
 func DefaultRules() Rules {
 	rules := Rules{}
 
-	addPluralRules(rules, []string{"bm", "bo", "dz", "id", "ig", "ii", "in", "ja", "jbo", "jv", "jw", "kde", "kea", "km", "ko", "lkt", "lo", "ms", "my", "nqo", "root", "sah", "ses", "sg", "th", "to", "vi", "wo", "yo", "yue", "zh"}, &Rule{
+	addPluralRules(rules, []string{"bm", "bo", "dz", "id", "ig", "ii", "in", "ja", "jbo", "jv", "jw", "kde", "kea", "km", "ko", "lkt", "lo", "ms", "my", "nqo", "root", "sah", "ses", "sg", "th", "to", "wo", "yo", "yue", "zh"}, &Rule{
 		PluralForms: newPluralFormSet(Other),
 		PluralFormFunc: func(ops *Operands) Form {
 			return Other
@@ -579,6 +579,33 @@ func DefaultRules() Rules {
 			}
 			// n != 1 and n % 100 = 1,21,41,61,81
 			if !ops.NEqualsAny(1) && ops.NModEqualsAny(100, 1, 21, 41, 61, 81) {
+				return Many
+			}
+			return Other
+		},
+	})
+
+	addPluralRules(rules, []string{"vi"}, &Rule{
+		PluralForms: newPluralFormSet(Zero, One, Two, Few, Many, Other),
+		PluralFormFunc: func(ops *Operands) Form {
+			// n = 0
+			if ops.NEqualsAny(0) {
+				return Zero
+			}
+			// n = 1
+			if ops.NEqualsAny(1) {
+				return One
+			}
+			// n = 2
+			if ops.NEqualsAny(2) {
+				return Two
+			}
+			// n = 3
+			if ops.NEqualsAny(3) {
+				return Few
+			}
+			// n = 6
+			if ops.NEqualsAny(6) {
 				return Many
 			}
 			return Other
