@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/nicksnyder/go-i18n/v2/i18n"
+	"go-i18n/i18n"
 )
 
 func usageExtract() {
